@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4abd3a6c-ebad-42be-a159-fc11d2d995b7" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/com/sofka/questions/QuestionsApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/com/sofka/questions/collections/Answer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/com/sofka/questions/collections/Question.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/com/sofka/questions/config/WebFluxConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/com/sofka/questions/model/AnswerDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/com/sofka/questions/model/QuestionDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/com/sofka/questions/reposioties/AnswerRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/com/sofka/questions/reposioties/QuestionRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/com/sofka/questions/routers/QuestionRouter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/com/sofka/questions/usecases/AddAnswerUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/com/sofka/questions/usecases/CreateUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/com/sofka/questions/usecases/DeleteUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/com/sofka/questions/usecases/GetUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/com/sofka/questions/usecases/ListUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/com/sofka/questions/usecases/MapperUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/com/sofka/questions/usecases/OwnerListUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/com/sofka/questions/usecases/SaveAnswer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/com/sofka/questions/usecases/SaveQuestion.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/com/sofka/questions/usecases/UpdateUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/co/com/sofka/questions/QuestionsApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/co/com/sofka/questions/usecases/AddAnswerUseCaseTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/co/com/sofka/questions/usecases/CreateUseCaseTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/co/com/sofka/questions/usecases/DeleteUseCaseTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/co/com/sofka/questions/usecases/GetUseCaseTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/co/com/sofka/questions/usecases/ListUseCaseTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/co/com/sofka/questions/usecases/UpdateUseCaseTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/system.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/.firebaserc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/firebase.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/public/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/actions/authActions.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/actions/questionActions.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/components/Answer.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/components/Navbar.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/components/Question.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/pages/AnswerFormPage.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/pages/HomePage.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/pages/OwnerQuestionsPage.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/pages/QuestionFormPage.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/pages/QuestionsPage.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/pages/SingleQuestionPage.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/reducers/authReducer.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/reducers/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/reducers/questionsReducer.js" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="23QimVtu80bhBQ4MEeBfRrRjIVY" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Backend" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4abd3a6c-ebad-42be-a159-fc11d2d995b7" name="Changes" comment="" />
+      <created>1641672907627</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1641672907627</updated>
+    </task>
+    <servers />
+  </component>
+</project>
