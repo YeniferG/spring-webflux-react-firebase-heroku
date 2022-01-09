@@ -35,12 +35,12 @@ const SingleQuestionPage = ({
 
   return (
     <section>
-      {renderQuestion()}
+      {renderQuestion()}<br/>
       {userId && <Link to={"/answer/" + id} className="button right">
         Reply
       </Link>}
 
-      <h2>Answers</h2>
+      <h2>Answers</h2><br/>
       {renderAnswers()}
     </section>
   )

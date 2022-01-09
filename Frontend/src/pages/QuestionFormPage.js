@@ -4,12 +4,14 @@ import { useHistory } from "react-router-dom";
 import { postQuestion } from '../actions/questionActions'
 import { connect } from 'react-redux'
 
-const FormPage = ({ dispatch, loading, redirect, userId }) => {
+const FormPage = ({ dispatch, loading, redirect, userId, photo }) => {
     const { register, handleSubmit } = useForm();
     const history = useHistory();
 
     const onSubmit = data => {
         data.userId = userId;
+        data.photoUrl = photo ? photo : photo="https://i.ibb.co/1rkvVY3/foto-anonimus-profile.png";
+        console.log("data ", data)
         dispatch(postQuestion(data));
     };
 
@@ -63,7 +65,8 @@ const mapStateToProps = state => ({
     loading: state.question.loading,
     redirect: state.question.redirect,
     hasErrors: state.question.hasErrors,
-    userId: state.auth.uid
+    userId: state.auth.uid,
+    photo: state.auth.photo
 })
 
 export default connect(mapStateToProps)(FormPage)

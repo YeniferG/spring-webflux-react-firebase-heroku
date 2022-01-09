@@ -1,18 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import {  fetchQuestion, postAnswer } from '../actions/questionActions'
-import { connect } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Question } from '../components/Question'
 
-const FormPage = ({ dispatch, loading, redirect, match,hasErrors, question, userId }) => {
+const FormPage = ({ match }) => {
+    const questions = useSelector(state => state.question);
+    const auth = useSelector(state => state.auth);
+    const dispatch = useDispatch();
+
     const { register, handleSubmit } = useForm();
     const { id } = match.params
     const history = useHistory();
 
     const onSubmit = data => {
-        data.userId =  userId;
+        data.userId = auth.uid;
+        data.userEmail = auth.email;
         data.questionId = id;
+        data.photoUrl = auth.photo ? auth.photo : auth.photo="https://i.ibb.co/1rkvVY3/foto-anonimus-profile.png";
         dispatch(postAnswer(data));
     };
 
@@ -21,44 +27,41 @@ const FormPage = ({ dispatch, loading, redirect, match,hasErrors, question, user
     }, [dispatch, id])
 
     useEffect(() => {
-        if (redirect) {
-            history.push(redirect);
+        if (questions.redirect) {
+            history.push(questions.redirect);
         }
-    }, [redirect, history])
+    }, [questions.redirect, history])
 
     const renderQuestion = () => {
-        if (loading.question) return <p>Loading question...</p>
-        if (hasErrors.question) return <p>Unable to display question.</p>
-
-        return <Question question={question} />
+        if (questions.loading.question) return <p>Loading question...</p>
+        if (questions.hasErrors.question) return <p>Unable to display question.</p>
+        return <Question question={questions.question} />
     }
 
 
     return (
         <section>
-            {renderQuestion()}
-            <h1>New Answer</h1>
-
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <div>
-                    <label for="answer">Answer</label>
-                    <textarea id="answer" {...register("answer", { required: true, maxLength: 300 })} />
+            <div className="container-md shadow p-4 mb-3 rounded form-group mx-10">
+                <div className="text-center">
+                    {renderQuestion()}
+                    <hr></hr>
                 </div>
-                <button type="submit" className="button" disabled={loading} >{
-                    loading ? "Saving ...." : "Save"
-                }</button>
-            </form>
+
+                <h1>New Answer</h1>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <div>
+                        <label htmlFor="answer">Answer</label>
+                    <textarea id="answer" {...register("answer", { required: true, maxLength: 300 })} />
+                    </div>
+                    <br></br>
+                    <button type="submit" className="btn btn-outline-primary  btn-lg" disabled={questions.loading} >{
+                        questions.loading ? "Saving ...." : "Save"
+                    }</button>
+                </form>
+            </div>
         </section>
 
     );
 }
 
-const mapStateToProps = state => ({
-    loading: state.question.loading,
-    redirect: state.question.redirect,
-    question: state.question.question,
-    hasErrors: state.question.hasErrors,
-    userId: state.auth.uid
-})
-
-export default connect(mapStateToProps)(FormPage)
+export default FormPage
