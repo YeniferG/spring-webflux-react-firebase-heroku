@@ -1,14 +1,9 @@
-import React from 'react'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from 'react-router-dom'
-import firebase from "firebase/app";
-import "firebase/firestore";
-import "firebase/auth";
+import React, { Fragment, useEffect } from 'react'
+import { BrowserRouter as Router, Switch,Route, Redirect,} from 'react-router-dom'
+
 import { login, logout } from './actions/authActions';
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth,signInWithGoogle } from './config/auth';
 
 import { PublicNavbar, PrivateNavbar } from './components/Navbar'
 import HomePage from './pages/HomePage'
@@ -17,32 +12,28 @@ import QuestionsPage from './pages/QuestionsPage'
 import QuestionFormPage from './pages/QuestionFormPage'
 import AnswerFormPage from './pages/AnswerFormPage'
 import OwnerQuestionsPage from './pages/OwnerQuestionsPage'
-import { useAuthState } from "react-firebase-hooks/auth";
+import { useDispatch } from 'react-redux';
+import Register from "./pages/RegisterPage"
+import LoginPage from './pages/LoginPage';
 
-firebase.initializeApp({
-  apiKey: "AIzaSyCTySyvuIDPg7RWF6ceuuwC2t3BEiAK38o",
-  authDomain: "question-app-demo.firebaseapp.com",
-  projectId: "question-app-demo",
-  storageBucket: "question-app-demo.appspot.com",
-  messagingSenderId: "1038673531562",
-  appId: "1:1038673531562:web:da90421f639a3115dcf6d3"
-});
 
-const auth = firebase.auth();
-
-const App = ({ dispatch }) => {
+const App = () => {
   const [user] = useAuthState(auth);
-  if(user){
-    dispatch(login(user.email, user.uid))
-  }
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    console.log("loggin", user)
+    dispatch(login(user?.email, user?.uid, user?.displayName,user?.photoURL));
+  }, [user])
   return (
-    <Router>
+    <Fragment>
+      <Router>
       {user ?
         <>
-          <PrivateNavbar />
+          <PrivateNavbar > <SignOut dispatch={dispatch} /></PrivateNavbar>
           <Switch>
             <Route exact path="/" component={() => {
-              return <HomePage><SignOut dispatch={dispatch} /></HomePage>
+              return <HomePage/>
             }} />
             <Route exact path="/questions" component={QuestionsPage} />
             <Route exact path="/question/:id" component={SingleQuestionPage} />
@@ -56,25 +47,24 @@ const App = ({ dispatch }) => {
           <PublicNavbar />
           <Switch>
             <Route exact path="/" component={() => {
-              return <HomePage><SignIn dispatch={dispatch} /></HomePage>
+              return <HomePage />
             }} />
             <Route exact path="/questions" component={QuestionsPage} />
             <Route exact path="/question/:id" component={SingleQuestionPage} />
             <Route exact path="/answer/:id" component={AnswerFormPage} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/login" component={LoginPage} />
             <Redirect to="/" />
           </Switch>
         </>
       }
     </Router>
+    </Fragment>
   )
 }
 
 
-function SignIn() {
-  const signInWithGoogle = () => {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithPopup(provider);
-  };
+function SignIn() {  
   return <button className="button right" onClick={signInWithGoogle}>Sign in with google</button>;
 }
 

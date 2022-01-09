@@ -4,7 +4,7 @@ import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
-
+import "bootswatch/dist/vapor/bootstrap.min.css";
 import App from './App'
 import rootReducer from './reducers'
 
