@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import { fetchOwnerQuestions, deleteQuestion } from '../actions/questionActions'
 import { Question } from '../components/Question'
+import swal from 'sweetalert';
 
 const OwnerQuestionsPage = ({ dispatch, loading, questions, hasErrors, redirect, userId }) => {
     useEffect(() => {
@@ -16,7 +17,21 @@ const OwnerQuestionsPage = ({ dispatch, loading, questions, hasErrors, redirect,
     }, [redirect, dispatch, userId]);
 
     const onDelete = (id) => {
-        dispatch(deleteQuestion(id))
+        swal({
+            title: "Estas seguro de eliminar?",
+            text: "Una vez eliminada no podras recuperar esta pregunta",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    dispatch(deleteQuestion(id))
+                    swal("Tu pregunta ha sido eliminada exitosamente", {
+                        icon: "success",
+                    });
+                }
+            });
     }
 
 
@@ -32,7 +47,7 @@ const OwnerQuestionsPage = ({ dispatch, loading, questions, hasErrors, redirect,
 
     return (
         <section>
-            <h1 className="text-center mt-5">My Questions</h1><br/>
+            <h1 className="text-center mt-5">My Questions</h1><br />
             {renderQuestions()}
         </section>
     )
