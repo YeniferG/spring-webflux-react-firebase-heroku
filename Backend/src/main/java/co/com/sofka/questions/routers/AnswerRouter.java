@@ -2,6 +2,7 @@ package co.com.sofka.questions.routers;
 
 import co.com.sofka.questions.model.AnswerDTO;
 import co.com.sofka.questions.model.AnswerPositionUserDTO;
+import co.com.sofka.questions.usecases.answers.DeleteAnswerUseCase;
 import co.com.sofka.questions.usecases.updateposition.UpdatePositionAnswerUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,6 +25,15 @@ public class AnswerRouter {
                                 .flatMap(result -> ServerResponse.ok()
                                         .contentType(MediaType.APPLICATION_JSON)
                                         .bodyValue(result)))
+        );
+    }
+
+    @Bean
+    public RouterFunction<ServerResponse> deleteAnswer(DeleteAnswerUseCase deleteUseCase) {
+        return route(DELETE("/deleteAnswer/{id}").and(accept(MediaType.APPLICATION_JSON)),
+                request -> ServerResponse.accepted()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(BodyInserters.fromPublisher(deleteUseCase.apply(request.pathVariable("id")), Void.class))
         );
     }
 
