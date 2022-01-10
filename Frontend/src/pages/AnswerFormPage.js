@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import {  fetchQuestion, postAnswer } from '../actions/questionActions'
 import { useDispatch, useSelector } from 'react-redux'
 import { Question } from '../components/Question'
+import { TextArea } from "../components/TextArea";
 
 const FormPage = ({ match }) => {
     const questions = useSelector(state => state.question);
@@ -14,10 +15,13 @@ const FormPage = ({ match }) => {
     const { id } = match.params
     const history = useHistory();
 
+    const [content, setContent] = useState('');
+
     const onSubmit = data => {
         data.userId = auth.uid;
         data.userEmail = auth.email;
         data.questionId = id;
+        data.answer = content;
         data.photoUrl = auth.photo ? auth.photo : auth.photo="https://i.ibb.co/1rkvVY3/foto-anonimus-profile.png";
         data.position = 0;
         dispatch(postAnswer(data));
@@ -42,7 +46,7 @@ const FormPage = ({ match }) => {
 
     return (
         <section>
-            <div className="container-md shadow p-4 mb-3 rounded form-group mx-10">
+            <div className="container-md shadow p-4 rounded form-group mx-10 mb-5">
                 <div className="text-center">
                     {renderQuestion()}
                     <hr></hr>
@@ -52,14 +56,14 @@ const FormPage = ({ match }) => {
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div>
                         <label htmlFor="answer">Answer</label>
-                    <textarea id="answer" {...register("answer", { required: true, maxLength: 300 })} />
+                        <TextArea setContent={setContent} />
                     </div>
                     <br></br>
                     <button type="submit" className="btn btn-outline-primary  btn-lg" disabled={questions.loading} >{
                         questions.loading ? "Saving ...." : "Save"
                     }</button>
                 </form>
-            </div>
+            </div><br/>
         </section>
 
     );
