@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom'
 
 export const Question = ({ question, excerpt, onDelete }) => (
   <article className={excerpt ? 'question-excerpt' : 'question'}>
-    <div class="row">
+    <div class="row mt-5">
 
       <div class="col-md-auto">
-        <img src={question.photoUrl ? question.photoUrl : "https://i.ibb.co/1rkvVY3/foto-anonimus-profile.png"}></img>
+        <img className="img-profile" src={question.photoUrl ? question.photoUrl : "https://i.ibb.co/1rkvVY3/foto-anonimus-profile.png"}></img>
       </div>
 
       <div className='col-md-auto'>
@@ -25,7 +25,7 @@ export const Question = ({ question, excerpt, onDelete }) => (
 
           <div className='col-md-auto'>
             {onDelete && (
-              <button className="btn btn-danger btn-lg btn-block" onClick={() => onDelete(question.id)}>DELETE</button>
+              <button className="btn btn-danger btn-lg btn-block" onClick={() => onDelete(question.id)}>Delete</button>
             )}
           </div>
 

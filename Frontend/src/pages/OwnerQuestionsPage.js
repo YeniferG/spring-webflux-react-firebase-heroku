@@ -32,7 +32,7 @@ const OwnerQuestionsPage = ({ dispatch, loading, questions, hasErrors, redirect,
 
     return (
         <section>
-            <h1>Questions</h1>
+            <h1 className="text-center mt-5">My Questions</h1><br/>
             {renderQuestions()}
         </section>
     )

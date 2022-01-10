@@ -6,7 +6,9 @@ import java.util.Objects;
 import java.util.Optional;
 
 public class AnswerDTO {
-    @NotBlank(message = "Debe existir el userId para este objeto")
+
+    private String id;
+    @NotBlank
     private String userId;
     @NotBlank
     private String questionId;
@@ -14,16 +16,41 @@ public class AnswerDTO {
     private String answer;
 
     private Integer position;
+    @NotBlank
+    private String photoUrl;
 
 
     public AnswerDTO() {
 
     }
 
-    public AnswerDTO(@NotBlank String questionId, @NotBlank String userId, @NotBlank String answer) {
+    public AnswerDTO( @NotBlank String userId, @NotBlank String questionId, @NotBlank String answer) {
         this.userId = userId;
         this.questionId = questionId;
         this.answer = answer;
+    }
+
+    public AnswerDTO( @NotBlank String id, @NotBlank String userId, @NotBlank String questionId, @NotBlank String answer) {
+        this.id = id;
+        this.userId = userId;
+        this.questionId = questionId;
+        this.answer = answer;
+    }
+
+    public AnswerDTO(String id, String userId, String questionId, String answer, String photoUrl) {
+        this.id = id;
+        this.userId = userId;
+        this.questionId = questionId;
+        this.answer = answer;
+        this.photoUrl = photoUrl;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public Integer getPosition() {
@@ -59,25 +86,36 @@ public class AnswerDTO {
         this.answer = answer;
     }
 
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AnswerDTO answerDTO = (AnswerDTO) o;
-        return Objects.equals(userId, answerDTO.userId);
+        return Objects.equals(id, answerDTO.id) && Objects.equals(userId, answerDTO.userId) && Objects.equals(questionId, answerDTO.questionId) && Objects.equals(answer, answerDTO.answer) && Objects.equals(position, answerDTO.position) && Objects.equals(photoUrl, answerDTO.photoUrl);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId);
+        return Objects.hash(id, userId, questionId, answer, position, photoUrl);
     }
 
     @Override
     public String toString() {
         return "AnswerDTO{" +
-                "userId='" + userId + '\'' +
+                "id='" + id + '\'' +
+                ", userId='" + userId + '\'' +
                 ", questionId='" + questionId + '\'' +
                 ", answer='" + answer + '\'' +
+                ", position=" + position +
+                ", photoUrl='" + photoUrl + '\'' +
                 '}';
     }
 }

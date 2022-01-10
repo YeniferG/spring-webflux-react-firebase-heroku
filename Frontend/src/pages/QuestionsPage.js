@@ -8,7 +8,7 @@ const QuestionsPage = ({ dispatch, loading, questions, hasErrors }) => {
     useEffect(() => {
         dispatch(fetchQuestions())
     }, [dispatch])
-    
+
     const renderQuestions = () => {
         if (loading) return <p>Loading questions...</p>
         if (hasErrors) return <p>Unable to display questions.</p>
@@ -18,8 +18,12 @@ const QuestionsPage = ({ dispatch, loading, questions, hasErrors }) => {
 
     return (
         <section>
-            <h1>Questions</h1>
-            {renderQuestions()}
+            <h1 className="text-center mt-5">Questions</h1>
+            <div className="py-5 d-flex justify-content-center">
+                <div className="card container container-md">
+                    {renderQuestions()}
+                </div>
+            </div>
         </section>
     )
 }

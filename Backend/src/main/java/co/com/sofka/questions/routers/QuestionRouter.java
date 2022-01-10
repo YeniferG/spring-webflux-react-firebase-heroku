@@ -2,7 +2,8 @@ package co.com.sofka.questions.routers;
 
 import co.com.sofka.questions.model.AnswerDTO;
 import co.com.sofka.questions.model.QuestionDTO;
-import co.com.sofka.questions.usecases.*;
+import co.com.sofka.questions.usecases.answers.AddAnswerUseCase;
+import co.com.sofka.questions.usecases.questions.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
@@ -25,6 +26,7 @@ public class QuestionRouter {
                 request -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(BodyInserters.fromPublisher(listUseCase.get(), QuestionDTO.class))
+                        .onErrorResume(throwable -> ServerResponse.badRequest().body(throwable.getMessage(), String.class))
         );
     }
 
@@ -37,7 +39,8 @@ public class QuestionRouter {
                         .body(BodyInserters.fromPublisher(
                                 ownerListUseCase.apply(request.pathVariable("userId")),
                                 QuestionDTO.class
-                         ))
+                        ))
+                        .onErrorResume(throwable -> ServerResponse.badRequest().body(throwable.getMessage(), String.class))
         );
     }
 
@@ -46,11 +49,13 @@ public class QuestionRouter {
         Function<QuestionDTO, Mono<ServerResponse>> executor = questionDTO ->  createUseCase.apply(questionDTO)
                 .flatMap(result -> ServerResponse.ok()
                         .contentType(MediaType.TEXT_PLAIN)
-                        .bodyValue(result));
+                        .bodyValue(result))
+                .onErrorResume(throwable -> ServerResponse.badRequest().body(throwable.getMessage(), String.class));
 
         return route(
                 POST("/create").and(accept(MediaType.APPLICATION_JSON)),
                 request -> request.bodyToMono(QuestionDTO.class).flatMap(executor)
+                        .onErrorResume(throwable -> ServerResponse.badRequest().body(throwable.getMessage(), String.class))
         );
     }
 
@@ -61,9 +66,9 @@ public class QuestionRouter {
                 request -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(BodyInserters.fromPublisher(getUseCase.apply(
-                                request.pathVariable("id")),
+                                        request.pathVariable("id")),
                                 QuestionDTO.class
-                        ))
+                        )).onErrorResume(throwable -> ServerResponse.badRequest().body(throwable.getMessage(), String.class))
         );
     }
 
@@ -75,7 +80,7 @@ public class QuestionRouter {
                                 .flatMap(result -> ServerResponse.ok()
                                         .contentType(MediaType.APPLICATION_JSON)
                                         .bodyValue(result))
-                        )
+                        ).onErrorResume(throwable -> ServerResponse.badRequest().body(throwable.getMessage(), String.class))
         );
     }
 
@@ -86,6 +91,21 @@ public class QuestionRouter {
                 request -> ServerResponse.accepted()
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(BodyInserters.fromPublisher(deleteUseCase.apply(request.pathVariable("id")), Void.class))
+                        .onErrorResume(throwable -> ServerResponse.badRequest().body(throwable.getMessage(), String.class))
+        );
+    }
+
+    @Bean
+    public RouterFunction<ServerResponse> update(UpdateUseCase updateUseCase) {
+        Function<QuestionDTO, Mono<ServerResponse>> executor = questionDTO ->  updateUseCase.apply(questionDTO)
+                .flatMap(result -> ServerResponse.ok()
+                        .contentType(MediaType.TEXT_PLAIN)
+                        .bodyValue(result));
+
+        return route(
+                PUT("/update").and(accept(MediaType.APPLICATION_JSON)),
+                request -> request.bodyToMono(QuestionDTO.class).flatMap(executor)
+                        .onErrorResume(throwable -> ServerResponse.badRequest().body(throwable.getMessage(), String.class))
         );
     }
 }

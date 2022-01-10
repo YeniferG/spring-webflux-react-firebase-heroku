@@ -2,8 +2,10 @@ package co.com.sofka.questions.usecases;
 
 import co.com.sofka.questions.collections.Answer;
 import co.com.sofka.questions.collections.Question;
+import co.com.sofka.questions.collections.User;
 import co.com.sofka.questions.model.AnswerDTO;
 import co.com.sofka.questions.model.QuestionDTO;
+import co.com.sofka.questions.model.UserDTO;
 import org.springframework.stereotype.Component;
 
 import java.util.function.Function;
@@ -14,10 +16,11 @@ public class MapperUtils {
     public Function<AnswerDTO, Answer> mapperToAnswer() {
         return updateAnswer -> {
             var answer = new Answer();
-            answer.setPosition(updateAnswer.getPosition());
-            answer.setQuestionId(updateAnswer.getQuestionId());
             answer.setUserId(updateAnswer.getUserId());
+            answer.setQuestionId(updateAnswer.getQuestionId());
             answer.setAnswer(updateAnswer.getAnswer());
+            answer.setPosition(updateAnswer.getPosition());
+            answer.setPhotoUrl(updateAnswer.getPhotoUrl());
             return answer;
         };
     }
@@ -29,8 +32,8 @@ public class MapperUtils {
             question.setUserId(updateQuestion.getUserId());
             question.setCategory(updateQuestion.getCategory());
             question.setQuestion(updateQuestion.getQuestion());
-            question.setUserId(updateQuestion.getUserId());
             question.setType(updateQuestion.getType());
+            question.setPhotoUrl(updateQuestion.getPhotoUrl());
             return question;
         };
     }
@@ -41,15 +44,37 @@ public class MapperUtils {
                 entity.getUserId(),
                 entity.getQuestion(),
                 entity.getType(),
-                entity.getCategory()
+                entity.getCategory(),
+                entity.getPhotoUrl()
         );
     }
 
     public Function<Answer, AnswerDTO> mapEntityToAnswer() {
         return entity -> new AnswerDTO(
+                entity.getId(),
                 entity.getQuestionId(),
                 entity.getUserId(),
-                entity.getAnswer()
+                entity.getAnswer(),
+                entity.getPhotoUrl()
         );
+    }
+
+    public Function<User, UserDTO> mapEntityToUser() {
+        return entity -> new UserDTO(
+                entity.getId(),
+                entity.getDisplayName(),
+                entity.getEmail()
+        );
+    }
+
+    public Function<UserDTO, User> mapperToUser(String id) {
+        return updateUser -> {
+            var user = new User(
+                    id,
+                    updateUser.getName(),
+                    updateUser.getEmail()
+            );
+            return user;
+        };
     }
 }

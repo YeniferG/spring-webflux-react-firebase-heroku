@@ -11,6 +11,7 @@ public class Answer {
     private String questionId;
     private String answer;
     private Integer position;
+    private String photoUrl;
 
     public Integer getPosition() {
         return position;
@@ -50,5 +51,13 @@ public class Answer {
 
     public void setAnswer(String answer) {
         this.answer = answer;
+    }
+
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
     }
 }

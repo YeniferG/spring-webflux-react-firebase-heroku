@@ -8,14 +8,14 @@ export const initialState = {
 }
 
 export default function authReducer(state = initialState, action) {
-  console.log("action.payload ", action.payload)
   switch (action.type) {
     case actions.LOGIN:
       const payload = action.payload;
-      console.log("login", payload)
-      return {...state, email: payload.email, uid: payload.uid,  name: payload.displayName, photo: payload.photoURL }
+      return { ...state, email: payload.email, uid: payload.uid, name: payload.name, photo: payload.photoURL }
     case actions.LOGOUT:
       return initialState
+    case actions.SUCCESS:
+      return { ...state,  email: action.email, uid: action.uid, name: action.name, photo:state.photo}
     default:
       return state
   }
