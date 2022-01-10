@@ -54,8 +54,8 @@ public class MapperUtils {
 
     public Function<Answer, AnswerDTO> mapEntityToAnswer() {
         return entity -> new AnswerDTO(
-                entity.getId(),
                 entity.getQuestionId(),
+                entity.getId(),
                 entity.getUserId(),
                 entity.getAnswer(),
                 entity.getPosition(),

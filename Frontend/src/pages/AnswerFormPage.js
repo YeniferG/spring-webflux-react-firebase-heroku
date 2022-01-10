@@ -19,6 +19,7 @@ const FormPage = ({ match }) => {
         data.userEmail = auth.email;
         data.questionId = id;
         data.photoUrl = auth.photo ? auth.photo : auth.photo="https://i.ibb.co/1rkvVY3/foto-anonimus-profile.png";
+        data.position = 0;
         dispatch(postAnswer(data));
     };
 
