@@ -14,7 +14,7 @@ public class AnswerDTO {
     private String questionId;
     @NotBlank
     private String answer;
-
+    private String answerId;
     private Integer position;
     @NotBlank
     private String photoUrl;
@@ -24,10 +24,13 @@ public class AnswerDTO {
 
     }
 
-    public AnswerDTO( @NotBlank String userId, @NotBlank String questionId, @NotBlank String answer) {
-        this.userId = userId;
+    public AnswerDTO(@NotBlank String questionId,String answerId, @NotBlank String userId, @NotBlank String answer,Integer position, String photoUrl) {
         this.questionId = questionId;
+        this.answerId = answerId;
+        this.userId = userId;
         this.answer = answer;
+        this.position = position;
+        this.photoUrl = photoUrl;
     }
 
     public AnswerDTO( @NotBlank String id, @NotBlank String userId, @NotBlank String questionId, @NotBlank String answer) {
@@ -80,6 +83,14 @@ public class AnswerDTO {
 
     public String getAnswer() {
         return answer;
+    }
+
+    public String getAnswerId() {
+        return answerId;
+    }
+
+    public void setAnswerId(String answerId) {
+        this.answerId = answerId;
     }
 
     public void setAnswer(String answer) {

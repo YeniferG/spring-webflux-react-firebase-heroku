@@ -1,13 +1,16 @@
 package co.com.sofka.questions.usecases;
 
 import co.com.sofka.questions.collections.Answer;
+import co.com.sofka.questions.collections.AnswerPositionUser;
 import co.com.sofka.questions.collections.Question;
 import co.com.sofka.questions.collections.User;
 import co.com.sofka.questions.model.AnswerDTO;
+import co.com.sofka.questions.model.AnswerPositionUserDTO;
 import co.com.sofka.questions.model.QuestionDTO;
 import co.com.sofka.questions.model.UserDTO;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.function.Function;
 
 @Component
@@ -55,6 +58,7 @@ public class MapperUtils {
                 entity.getQuestionId(),
                 entity.getUserId(),
                 entity.getAnswer(),
+                entity.getPosition(),
                 entity.getPhotoUrl()
         );
     }
@@ -68,13 +72,32 @@ public class MapperUtils {
     }
 
     public Function<UserDTO, User> mapperToUser(String id) {
-        return updateUser -> {
-            var user = new User(
-                    id,
-                    updateUser.getName(),
-                    updateUser.getEmail()
-            );
-            return user;
+        return updateUser -> new User(
+                id,
+                updateUser.getName(),
+                updateUser.getEmail()
+        );
+    }
+
+    public Function<AnswerPositionUserDTO, AnswerPositionUser> mapAnswerPositionUserDTOToEntity(String id) {
+        return answerPositionUserDTO -> {
+            var answerPosition = new AnswerPositionUser();
+            answerPosition.setId(id);
+            answerPosition.setQuestionId(answerPositionUserDTO.getQuestionId());
+            answerPosition.setUserId(answerPositionUserDTO.getUserId());
+            answerPosition.setAnswerId(answerPositionUserDTO.getAnswerId());
+            answerPosition.setAction(answerPositionUserDTO.getAction());
+            answerPosition.setAnswerPositionDate(LocalDateTime.now());
+            return answerPosition;
         };
+    }
+
+    public Function<AnswerPositionUser, AnswerPositionUserDTO> mapEntityToAnswerPositionUserDTO() {
+        return entity -> new AnswerPositionUserDTO(
+                entity.getAnswerId(),
+                entity.getAction(),
+                entity.getQuestionId(),
+                entity.getUserId()
+        );
     }
 }
