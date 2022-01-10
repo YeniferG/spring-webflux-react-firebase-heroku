@@ -20,7 +20,7 @@ const QuestionsPage = ({ dispatch, loading, questions, hasErrors }) => {
         <section>
             <h1 className="text-center mt-5">Questions</h1>
             <div className="py-5 d-flex justify-content-center">
-                <div className="card container container-md">
+                <div className="card container container-md mb-5">
                     {renderQuestions()}
                 </div>
             </div>

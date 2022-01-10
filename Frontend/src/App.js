@@ -16,6 +16,7 @@ import { useDispatch } from 'react-redux';
 import Register from "./pages/RegisterPage"
 import LoginPage from './pages/LoginPage';
 import ProfilePage from './pages/ProfilePage';
+import Footer from './components/Footer';
 
 
 const App = () => {
@@ -68,6 +69,7 @@ const App = () => {
         </>
       }
     </Router>
+    <Footer />
     </Fragment>
   )
 }
@@ -81,7 +83,7 @@ function SignOut({ dispatch }) {
   return (
     auth.currentUser && (
       <button
-        className="button right"
+        className="button"
         onClick={() => {
           dispatch(logout())
           auth.signOut();

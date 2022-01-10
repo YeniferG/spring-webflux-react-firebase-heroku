@@ -2,21 +2,21 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 export const PublicNavbar = () => (
-  <nav className="navbar navbar-expand-lg navbar-dark bg-primary rounded">
+  <nav className="navbar navbar-expand-lg rounded navbar-bg">
     <div class="container-fluid">
       <section>
         <Link to="/">Home</Link>
         <Link to="/questions">Questions</Link>
       </section>
       <div>        
-      <Link className='button' to="/login">SignIn</Link>
+      <Link className='button bg-light' to="/login">SignIn</Link>
       </div>
     </div>
   </nav>
 )
 
 export const PrivateNavbar = ({ children }) => (
-  <nav className="navbar navbar-expand-lg navbar-dark bg-primary rounded">
+  <nav className="navbar navbar-expand-lg rounded navbar-bg">
     <div class="container-fluid">
       <section>
         <Link to="/">Home</Link>
