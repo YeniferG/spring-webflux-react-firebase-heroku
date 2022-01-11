@@ -25,7 +25,7 @@ const SingleQuestionPage = ({
     if (loading.question) return <p>Loading question...</p>
     if (hasErrors.question) return <p>Unable to display question.</p>
 
-    return <Question question={question} />
+    return <Question showFavorite={true} question={question} />
   }
 
   const renderAnswers = () => {
@@ -36,7 +36,7 @@ const SingleQuestionPage = ({
 
   return (
     <section>
-      {renderQuestion()}<br/>
+      {renderQuestion()}<br/><br/>
       {userId && <Link to={"/answer/" + id} className="button right">
         Reply
       </Link>}
