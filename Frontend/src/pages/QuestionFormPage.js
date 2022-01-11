@@ -57,7 +57,6 @@ const FormPage = () => {
                     </div>
                     <div>
                         <label htmlFor="question">Question</label>
-
                         <TextArea setContent={setContent} />
                     </div>
                     <br></br>

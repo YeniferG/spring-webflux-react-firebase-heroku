@@ -62,4 +62,16 @@ public class Question {
     public void setPhotoUrl(String photoUrl) {
         this.photoUrl = photoUrl;
     }
+
+    @Override
+    public String toString() {
+        return "Question{" +
+                "id='" + id + '\'' +
+                ", userId='" + userId + '\'' +
+                ", question='" + question + '\'' +
+                ", type='" + type + '\'' +
+                ", category='" + category + '\'' +
+                ", photoUrl='" + photoUrl + '\'' +
+                '}';
+    }
 }

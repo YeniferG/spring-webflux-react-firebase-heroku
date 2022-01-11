@@ -8,10 +8,6 @@ body {
   Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-p {
-  font-size: 1.1rem;
-}
-
 nav {
   display: flex;
   padding: 2rem 0;

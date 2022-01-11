@@ -96,27 +96,6 @@ export function deleteQuestion(id) {
     }
 }
 
-export function postAnswer(answer) {
-    return async dispatch => {
-        dispatch(loading())
-        try {
-            await fetch(`${URL_BASE}/add`,
-                {
-                    method: 'POST',
-                    mode: 'cors',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(answer)
-                }
-            )
-            dispatch(success({redirect: `/question/${answer.questionId}`}));
-        } catch (error) {
-            dispatch(failure())
-        }
-    }
-}
-
 export function addFavorite(data){
     return async dispatch => {
         dispatch(loading())
@@ -138,4 +117,15 @@ export function addFavorite(data){
     }
 }
 
-
+export function getFavoritesUser(userId) {
+    return async dispatch => {
+        dispatch(loading())
+        try {
+            const response = await fetch(`${URL_BASE}/getFavorites/${userId}`)
+            const data = await response.json()
+            dispatch(success({ favorites: data, redirect: null }))
+        } catch (error) {
+            dispatch(failure())
+        }
+    }
+}

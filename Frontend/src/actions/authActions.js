@@ -4,8 +4,6 @@ export const LOGIN = 'LOGIN'
 export const LOGOUT = 'LOGOUT'
 export const SUCCESS = 'SUCCESS'
 
-/*export const login = (email, uid) => ({ type: LOGIN, payload: {email, uid} })*/
-
 export const login = (email, uid, name, photoURL) => ({ type: LOGIN, payload: {email, uid, name, photoURL} })
 
 export const logout = () => ({

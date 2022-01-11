@@ -35,12 +35,13 @@ public class QuestionDTO {
         this.category = category;
     }
 
-    public QuestionDTO(String id, String userId, String question, String type, String category, Boolean favorite) {
+    public QuestionDTO(String id, String userId, String question, String type, String category, String photoUrl, Boolean favorite) {
         this.id = id;
         this.userId = userId;
         this.question = question;
         this.type = type;
         this.category = category;
+        this.photoUrl = photoUrl;
         this.favorite = favorite;
     }
 

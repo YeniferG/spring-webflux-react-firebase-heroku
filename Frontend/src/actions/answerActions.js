@@ -13,6 +13,27 @@ export const success = payload => ({
 
 export const failure = () => ({ type: LOADED_FAILURE })
 
+export function postAnswer(answer) {
+    return async dispatch => {
+        dispatch(loading())
+        try {
+            await fetch(`${URL_BASE}/add`,
+                {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(answer)
+                }
+            )
+            dispatch(success({redirect: `/question/${answer.questionId}`}));
+        } catch (error) {
+            dispatch(failure())
+        }
+    }
+}
+
 export function postUpdatePositionAnswer(updatePosition) {
     return async dispatch => {
         dispatch(loading())

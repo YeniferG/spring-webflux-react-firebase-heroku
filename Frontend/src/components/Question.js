@@ -5,14 +5,12 @@ import StarOutlineIcon from '@mui/icons-material/StarOutline';
 import { connect } from 'react-redux';
 import { addFavorite } from '../actions/questionActions';
 
-const Question = ({ dispatch, question, excerpt, onDelete, showFavorite }) => {
-
+const Question = ({ dispatch, question, excerpt, onDelete,showFavorite,userId }) => {
   const handleClick = () => {
-
     const data = {
       questionId: question.id,
-      question: question.question,
-      userId: question.userId
+      question : question.question,
+      userId
     }
     dispatch(addFavorite(data))
   }
@@ -21,7 +19,7 @@ const Question = ({ dispatch, question, excerpt, onDelete, showFavorite }) => {
     <article className={excerpt ? 'question-excerpt' : 'question'}>
       <div class="row mt-5 justify-content-between">
         <div class="col-md-auto">
-          <img className="img-profile" src={question.photoUrl ? question.photoUrl : "https://i.ibb.co/1rkvVY3/foto-anonimus-profile.png"}></img>
+          <img className="img-profile" src={question.photoUrl ? question.photoUrl : "https://i.ibb.co/1rkvVY3/foto-anonimus-profile.png"}/>
         </div>
         <div className='col-md-auto'>
           <h2><div dangerouslySetInnerHTML={{ __html: question.question }} /></h2>
@@ -42,23 +40,24 @@ const Question = ({ dispatch, question, excerpt, onDelete, showFavorite }) => {
           </div>
         </div>
         <div className='col-md-auto container-question-title'>
-          {question.favorite ?
-            <div className='container-favorites' onClick={handleClick}>
-              <p className='text-favorite'><b>star</b></p>
-              <StarOutlineIcon />
-            </div> : showFavorite ?
-              <div className='container-favorites-added' onClick={handleClick}>
-                <p className='text-favorite'><b>Added</b></p>
-                <StarIcon />
-              </div> : null}
-        </div>
+        {question.favorite && userId ? 
+          <div className='container-favorites' onClick={handleClick}>
+            <p className='text-favorite'><b>Add Favorites</b></p>
+            <StarOutlineIcon />
+          </div> : showFavorite && userId ? 
+          <div className='container-favorites-added'>
+            <p className='text-favorite'><b>Added</b></p>
+            <StarIcon /> 
+          </div> :null}
+      </div>
       </div>
     </article>
   )
-}
+  }
 
 const mapStateToProps = state => ({
   userId: state.auth.uid
 })
 
 export default connect(mapStateToProps)(Question);
+

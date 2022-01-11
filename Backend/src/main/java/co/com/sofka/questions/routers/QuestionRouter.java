@@ -1,8 +1,10 @@
 package co.com.sofka.questions.routers;
 
 import co.com.sofka.questions.model.AnswerDTO;
+import co.com.sofka.questions.model.FavoriteDTO;
 import co.com.sofka.questions.model.QuestionDTO;
 import co.com.sofka.questions.usecases.answers.AddAnswerUseCase;
+import co.com.sofka.questions.usecases.favorite.FavoritesUseCase;
 import co.com.sofka.questions.usecases.questions.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -56,6 +58,18 @@ public class QuestionRouter {
                 POST("/create").and(accept(MediaType.APPLICATION_JSON)),
                 request -> request.bodyToMono(QuestionDTO.class).flatMap(executor)
                         .onErrorResume(throwable -> ServerResponse.badRequest().body(throwable.getMessage(), String.class))
+        );
+    }
+
+    @Bean
+    public RouterFunction<ServerResponse> getFavorites(FavoritesUseCase useCase) {
+        return route(GET("/getFavorites/{id}").and(accept(MediaType.APPLICATION_JSON)),
+                request -> ServerResponse.ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(BodyInserters.fromPublisher(
+                                useCase.apply(request.pathVariable("id")),
+                                FavoriteDTO.class
+                        ))
         );
     }
 

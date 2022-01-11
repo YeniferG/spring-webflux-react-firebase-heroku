@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
-import {  fetchQuestion, postAnswer } from '../actions/questionActions'
+import {  postAnswer } from '../actions/answerActions'
+import { fetchQuestion } from '../actions/questionActions'
 import { useDispatch, useSelector } from 'react-redux'
 import Question from '../components/Question'
 import { TextArea } from "../components/TextArea";
