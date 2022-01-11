@@ -17,6 +17,7 @@ import Register from "./pages/RegisterPage"
 import LoginPage from './pages/LoginPage';
 import ProfilePage from './pages/ProfilePage';
 import Footer from './components/Footer';
+import FavoritesFormPage from './pages/FavoritesFormPage';
 
 
 const App = () => {
@@ -50,6 +51,7 @@ const App = () => {
             <Route exact path="/answer/:id" component={AnswerFormPage} />
             <Route exact path="/new" component={QuestionFormPage} />
             <Route exact path="/user" component={ProfilePage} />
+            <Route exact path="/favorites" component={FavoritesFormPage} />
             <Redirect to="/" />
           </Switch>
         </> :
