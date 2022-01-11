@@ -1,8 +1,12 @@
 import React, { useEffect } from "react";
 import { connect } from 'react-redux'
-import { getFavoritesUser } from "../actions/questionActions";
+import { deleteFavorite, getFavoritesUser } from "../actions/questionActions";
 
 const FavoritesFormPage = ({ dispatch,favorites, userId,redirect }) => {
+
+    const handleClick = (id) => {
+        dispatch(deleteFavorite(id))
+    }
 
     useEffect(() => {
         if (redirect) {
@@ -16,10 +20,11 @@ const FavoritesFormPage = ({ dispatch,favorites, userId,redirect }) => {
 
     return (
         <section>
-            <h1 className="mt-5 text-center">Favorites</h1>
+            <h1 className="text-center mt-3">My Favorites</h1><br/>
             {favorites.map(favorite => (
                 <div key={favorite.id} className="container-fav">
                     <p className="question-fav"><div dangerouslySetInnerHTML={{ __html: favorite.question }} /></p>
+                    <button onClick={() => handleClick(favorite.id)} className="button-rm-fav">Remove</button>
                 </div>
             ))}
         </section>

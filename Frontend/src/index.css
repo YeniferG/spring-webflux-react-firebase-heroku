@@ -224,3 +224,29 @@ textarea {
 .text-favorite {
   margin: 0;
 }
+
+.container-fav{
+  margin-top: 3%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2e1857;
+  font-weight: 800;
+  font-size: 20px;
+  padding: 1.5rem 1rem;
+  border-bottom: 1px solid rgb(97, 193, 223);
+}
+
+.button-rm-fav{
+  height: 35px;
+  background: #e02e2e;
+  color: white;
+  font-weight: 700;
+  border: 1px solid rgb(0, 0, 0);
+  width: 100px;
+  cursor: pointer;
+}
+
+.answer-fav {
+  font-size: 25px;
+}

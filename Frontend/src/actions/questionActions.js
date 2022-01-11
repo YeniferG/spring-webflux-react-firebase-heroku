@@ -129,3 +129,24 @@ export function getFavoritesUser(userId) {
         }
     }
 }
+
+export function deleteFavorite(id) {
+    return async dispatch => {
+        dispatch(loading())
+        try {
+            await fetch(`${URL_BASE}/deleteFavorite/${id}`,
+                {
+                    method: 'DELETE',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }
+            )
+            dispatch(success({redirect: `/favorites`}));
+        } catch (error) {
+            dispatch(failure())
+        }
+    }
+}
+
