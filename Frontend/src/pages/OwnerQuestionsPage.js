@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 
 import { fetchOwnerQuestions, deleteQuestion } from '../actions/questionActions'
-import { Question } from '../components/Question'
+import Question from '../components/Question'
 import swal from 'sweetalert';
 
 const OwnerQuestionsPage = ({ dispatch, loading, questions, hasErrors, redirect, userId }) => {
