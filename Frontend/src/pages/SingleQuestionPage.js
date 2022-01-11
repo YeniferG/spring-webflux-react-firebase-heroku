@@ -13,12 +13,12 @@ const SingleQuestionPage = ({
   question,
   hasErrors,
   loading,
-  userId,
-  redirect
+  redirect,  
+  userId
 }) => {
   const { id } = match.params
   useEffect(() => {
-    dispatch(fetchQuestion(id))
+    dispatch(fetchQuestion(id, userId))
   }, [dispatch, id, redirect])
 
   const renderQuestion = () => {
@@ -51,8 +51,8 @@ const mapStateToProps = state => ({
   question: state.question.question,
   loading: state.question.loading,
   hasErrors: state.question.hasErrors,
-  userId: state.auth.uid,
-  redirect: state.question.redirect
+  redirect: state.question.redirect,
+  userId: state.auth.uid
 })
 
 export default connect(mapStateToProps)(SingleQuestionPage)

@@ -19,7 +19,7 @@ const FavoritesFormPage = ({ dispatch,favorites, userId,redirect }) => {
             <h1 className="mt-5 text-center">Favorites</h1>
             {favorites.map(favorite => (
                 <div key={favorite.id} className="container-fav">
-                    <p className="question-fav">{favorite.question}</p>
+                    <p className="question-fav"><div dangerouslySetInnerHTML={{ __html: favorite.question }} /></p>
                 </div>
             ))}
         </section>

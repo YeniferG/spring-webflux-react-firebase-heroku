@@ -76,25 +76,14 @@ public class QuestionRouter {
     @Bean
     public RouterFunction<ServerResponse> get(GetUseCase getUseCase) {
         return route(
-                GET("/get/{id}").and(accept(MediaType.APPLICATION_JSON)),
+                GET("/get/{id}/{userId}").and(accept(MediaType.APPLICATION_JSON)),
                 request -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(BodyInserters.fromPublisher(getUseCase.apply(
-                                        request.pathVariable("id")),
+                                        request.pathVariable("id"),
+                                        request.pathVariable("userId")),
                                 QuestionDTO.class
-                        )).onErrorResume(throwable -> ServerResponse.badRequest().body(throwable.getMessage(), String.class))
-        );
-    }
-
-    @Bean
-    public RouterFunction<ServerResponse> addAnswer(AddAnswerUseCase addAnswerUseCase) {
-        return route(POST("/add").and(accept(MediaType.APPLICATION_JSON)),
-                request -> request.bodyToMono(AnswerDTO.class)
-                        .flatMap(addAnswerDTO -> addAnswerUseCase.apply(addAnswerDTO)
-                                .flatMap(result -> ServerResponse.ok()
-                                        .contentType(MediaType.APPLICATION_JSON)
-                                        .bodyValue(result))
-                        ).onErrorResume(throwable -> ServerResponse.badRequest().body(throwable.getMessage(), String.class))
+                        ))
         );
     }
 

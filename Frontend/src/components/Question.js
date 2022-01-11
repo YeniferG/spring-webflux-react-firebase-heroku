@@ -17,7 +17,7 @@ const Question = ({ dispatch, question, excerpt, onDelete,showFavorite,userId })
 
   return (
     <article className={excerpt ? 'question-excerpt' : 'question'}>
-      <div class="row mt-5 justify-content-between">
+      <div class="row mt-3 justify-content-between">
         <div class="col-md-auto">
           <img className="img-profile" src={question.photoUrl ? question.photoUrl : "https://i.ibb.co/1rkvVY3/foto-anonimus-profile.png"}/>
         </div>
