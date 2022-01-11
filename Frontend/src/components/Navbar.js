@@ -1,8 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import img from '../assets/img/logo.png'
 
 export const PublicNavbar = () => (
   <nav className="navbar navbar-expand-lg rounded navbar-bg">
+    <img className='logo' src={img} alt=""></img>
     <div class="container-fluid">
       <section>
         <Link to="/">Home</Link>
@@ -17,6 +19,7 @@ export const PublicNavbar = () => (
 
 export const PrivateNavbar = ({ children }) => (
   <nav className="navbar navbar-expand-lg rounded navbar-bg">
+    <img className='logo' src={img} alt=""></img>
     <div class="container-fluid">
       <section>
         <Link to="/">Home</Link>

@@ -49,10 +49,10 @@ const FormPage = ({ match }) => {
             <div className="container-md shadow p-4 rounded form-group mx-10 mb-5">
                 <div className="text-center">
                     {renderQuestion()}
-                    <hr></hr>
+                    <br/>
                 </div>
 
-                <h1>New Answer</h1>
+                <h1 className="text-center">New Answer</h1>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div>
                         <label htmlFor="answer">Answer</label>

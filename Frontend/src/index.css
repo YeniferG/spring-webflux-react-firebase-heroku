@@ -147,6 +147,11 @@ textarea {
   max-width: 60rem;
 }
 
+.card-answer{
+  background: #5d35a8;
+  max-width: 60rem;
+}
+
 .container-md {
   background-color: #2e1857;
 }
@@ -178,4 +183,9 @@ textarea {
   font-size: 15px;
   font-family: 'Courier New', Courier, monospace;
   margin: 0%;
+}
+
+.logo {
+  width: 180px;
+  margin-left: 40px;
 }
