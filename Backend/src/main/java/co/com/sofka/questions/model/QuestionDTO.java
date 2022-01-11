@@ -21,6 +21,8 @@ public class QuestionDTO {
     @NotBlank
     private String photoUrl;
 
+    private Boolean favorite;
+
 
     public QuestionDTO() {
 
@@ -33,12 +35,13 @@ public class QuestionDTO {
         this.category = category;
     }
 
-    public QuestionDTO(String id, String userId, String question, String type, String category) {
+    public QuestionDTO(String id, String userId, String question, String type, String category, Boolean favorite) {
         this.id = id;
         this.userId = userId;
         this.question = question;
         this.type = type;
         this.category = category;
+        this.favorite = favorite;
     }
 
     public QuestionDTO(String id, String userId, String question, String type, String category, String photo) {
@@ -107,6 +110,27 @@ public class QuestionDTO {
         this.photoUrl = photoUrl;
     }
 
+    public Boolean getFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(Boolean favorite) {
+        this.favorite = favorite;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        QuestionDTO that = (QuestionDTO) o;
+        return Objects.equals(id, that.id) && Objects.equals(userId, that.userId) && Objects.equals(question, that.question) && Objects.equals(type, that.type) && Objects.equals(category, that.category) && Objects.equals(answers, that.answers) && Objects.equals(photoUrl, that.photoUrl) && Objects.equals(favorite, that.favorite);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, userId, question, type, category, answers, photoUrl, favorite);
+    }
+
     @Override
     public String toString() {
         return "QuestionDTO{" +
@@ -116,20 +140,8 @@ public class QuestionDTO {
                 ", type='" + type + '\'' +
                 ", category='" + category + '\'' +
                 ", answers=" + answers +
-                ", photo='" + photoUrl + '\'' +
+                ", photoUrl='" + photoUrl + '\'' +
+                ", favorite=" + favorite +
                 '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        QuestionDTO that = (QuestionDTO) o;
-        return Objects.equals(id, that.id) && Objects.equals(userId, that.userId) && Objects.equals(question, that.question) && Objects.equals(type, that.type) && Objects.equals(category, that.category) && Objects.equals(answers, that.answers) && Objects.equals(photoUrl, that.photoUrl);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, userId, question, type, category, answers, photoUrl);
     }
 }

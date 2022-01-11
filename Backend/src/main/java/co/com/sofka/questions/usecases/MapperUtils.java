@@ -1,13 +1,7 @@
 package co.com.sofka.questions.usecases;
 
-import co.com.sofka.questions.collections.Answer;
-import co.com.sofka.questions.collections.AnswerPositionUser;
-import co.com.sofka.questions.collections.Question;
-import co.com.sofka.questions.collections.User;
-import co.com.sofka.questions.model.AnswerDTO;
-import co.com.sofka.questions.model.AnswerPositionUserDTO;
-import co.com.sofka.questions.model.QuestionDTO;
-import co.com.sofka.questions.model.UserDTO;
+import co.com.sofka.questions.collections.*;
+import co.com.sofka.questions.model.*;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -49,6 +43,17 @@ public class MapperUtils {
                 entity.getType(),
                 entity.getCategory(),
                 entity.getPhotoUrl()
+        );
+    }
+
+    public Function<Question, QuestionDTO> mapEntityToQuestionWithoutStarred() {
+        return entity -> new QuestionDTO(
+                entity.getId(),
+                entity.getUserId(),
+                entity.getQuestion(),
+                entity.getType(),
+                entity.getCategory(),
+                Boolean.FALSE
         );
     }
 
@@ -98,6 +103,25 @@ public class MapperUtils {
                 entity.getAction(),
                 entity.getQuestionId(),
                 entity.getUserId()
+        );
+    }
+
+    public Function<FavoriteDTO, Favorite> mapFavoriteToEntity(String id) {
+        return favoriteDTO -> {
+            var favorite = new Favorite();
+            favorite.setId(id);
+            favorite.setQuestion(favoriteDTO.getQuestion());
+            favorite.setUserId(favoriteDTO.getUserId());
+            favorite.setQuestionId(favoriteDTO.getQuestionId());
+            return favorite;
+        };
+    }
+
+    public Function<Favorite, FavoriteDTO> mapEntityToFavorite() {
+        return entity -> new FavoriteDTO(
+                entity.getUserId(),
+                entity.getQuestionId(),
+                entity.getQuestion()
         );
     }
 }
