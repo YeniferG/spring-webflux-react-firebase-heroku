@@ -1,11 +1,26 @@
 import React, { useEffect } from "react";
 import { connect } from 'react-redux'
 import { deleteFavorite, getFavoritesUser } from "../actions/questionActions";
+import swal from 'sweetalert';
 
 const FavoritesFormPage = ({ dispatch,favorites, userId,redirect }) => {
 
-    const handleClick = (id) => {
-        dispatch(deleteFavorite(id))
+    const handleClick = (id) => {        
+        swal({
+            title: "Estas seguro de eliminar?",
+            text: "Una vez eliminada no podras recuperar esta pregunta",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    dispatch(deleteFavorite(id))
+                    swal("Tu pregunta ha sido eliminada exitosamente", {
+                        icon: "success",
+                    });
+                }
+            });
     }
 
     useEffect(() => {

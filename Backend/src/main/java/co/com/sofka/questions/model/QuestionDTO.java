@@ -24,11 +24,11 @@ public class QuestionDTO {
     private Boolean favorite;
 
 
-    public QuestionDTO() {
+    public QuestionDTO(String s, String yy, String s1, String test, String s2) {
 
     }
 
-    public QuestionDTO(String userId, String question, String type, String category) {
+    public QuestionDTO() {
         this.userId = userId;
         this.question = question;
         this.type = type;

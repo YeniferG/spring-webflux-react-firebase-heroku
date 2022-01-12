@@ -43,9 +43,12 @@ const ProfilePage = () => {
 
     return (
         <section>
-            <div className="container-md shadow p-4 mt-5 mb-3 rounded form-group mx-10">
-                <h2 className="text-center">Personal Information</h2>
-                <hr />
+            <div className="container-profile shadow p-4 mt-5 mb-3 rounded form-group mx-10">
+                <div className="text-center">
+                <h2 className="text-center title-profile">Personal Information</h2>
+                <img className="img-profile" src={user.photo}></img>
+                </div>
+                <br />
                 <form onSubmit={handleSubmit(validateInput)}>
                     <div>
                         <label htmlFor="name">Name</label>

@@ -152,6 +152,15 @@ textarea {
   background-color: #2e1857;
 }
 
+.container-profile {
+  background-color: #422e6b;
+}
+
+.title-profile {
+  font-size: 40px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
 .img-profile {
   border-radius: 50%;
 }
@@ -249,4 +258,17 @@ textarea {
 
 .answer-fav {
   font-size: 25px;
+}
+
+.keyboard{
+  cursor: pointer;
+  height: 35px !important;
+  width: 40px !important;
+  color:rgb(44, 40, 40);
+}
+
+.keyboard:hover{
+  background-color: rgb(211, 206, 206);
+  border-radius: 50%;
+  transition: background .5s;
 }

@@ -32,6 +32,7 @@ class ListUseCaseTest {
         question.setType("tech");
         question.setCategory("software");
         question.setQuestion("¿Que es java?");
+        question.setPhotoUrl("img");
         when(repository.findAll()).thenReturn(Flux.just(question ));
 
         StepVerifier.create(listUseCase.get())
@@ -40,6 +41,8 @@ class ListUseCaseTest {
                     assert questionDTO.getCategory().equals("software");
                     assert questionDTO.getQuestion().equals("¿Que es java?");
                     assert questionDTO.getType().equals("tech");
+                    assert questionDTO.getPhotoUrl().equals("img");
+                    assert questionDTO.getFavorite().equals(Boolean.FALSE);
                     return true;
                 })
                 .verifyComplete();
